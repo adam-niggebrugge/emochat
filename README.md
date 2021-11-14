@@ -1,6 +1,3 @@
-# emochat
-A fun casual chat app all done through emoticons 
-
 # Emochat / EMOTICOMMUNICATION
  
 A fun casual chat app all done through emoticons 
@@ -59,8 +56,6 @@ From scratch, open your preferred terminal and type:
 
 ```
 
-npm init
-
 npx create-react-app emochat
 
 npm install express@4
@@ -72,13 +67,6 @@ npm install socket.io
 
 _ _ _ _
 
-## Tests
-
-```
-
-TODO
-
-```
 ## Contributing
 
 Any contributions are welcomed, review from code owners before intergration is accepted.
@@ -95,14 +83,12 @@ Have questions about the project?
 4. :email: [Adam](mailto:adam.niggebrugge@gmail.com)
 
 
-
 ## Contributors
 
 1. :hand_over_mouth: [Adam Niggebrugge](https://github.com/adam-niggebrugge)
 2. :joy: [Hudson Hancock](https://github.com/hudsonhancock)
 3. :money_mouth_face: [Jeff Cela](https://github.com/jeffcela)
 4. :innocent: [Sebastian Campos](https://github.com/scampos321)
-
 
 ## React_App
 
@@ -120,7 +106,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-#### `npm test`
+## Tests
+
+### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
