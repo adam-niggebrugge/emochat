@@ -1,8 +1,110 @@
 # emochat
 A fun casual chat app all done through emoticons 
 
+# Emochat / EMOTICOMMUNICATION
+ 
+A fun casual chat app all done through emoticons 
 
-## Generic Create React App
+## Table of Contents
+
+1. [License](#License)
+
+2. [Description](#Description)
+
+3. [Usage](#Usage)
+
+4. [Technology](#Technology)
+
+5. [Installation](#Installation)
+
+6. [Tests](#Tests)
+
+7. [Contributing](#Contributing)
+
+8. [Questions](#Questions)
+
+9. [React](#React_App)
+
+
+### License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Description
+
+A chat app that relies on emoticons as the only means of expression
+
+## Usage
+
+A casual chat between friends the focuses on expressing emotions, perfect for times when words might slow you down like when watching a sporting an event
+
+_ _ _ _
+
+## Technology
+
+NodeJS, Express, [Socket.IO](https://socket.io/), Javascript, HTML, CSS
+
+## Installation
+
+(assumes users has installed NodeJS)
+
+If pulling from clone:
+```
+
+npm install
+
+```
+
+From scratch, open your preferred terminal and type:
+
+```
+
+npm init
+
+npx create-react-app emochat
+
+npm install express@4
+
+npm install socket.io
+
+
+```
+
+_ _ _ _
+
+## Tests
+
+```
+
+TODO
+
+```
+## Contributing
+
+Any contributions are welcomed, review from code owners before intergration is accepted.
+
+_ _ _ _
+
+## Questions
+
+Have questions about the project? 
+
+1. :email: [Sebstian](mailto:seb.campos03@gmail.com)
+2. :email: [Jeff](mailto:jeffcela@gmail.com)
+3. :email: [Hudson](mailto:hudsonhancock@gmail.com)
+4. :email: [Adam](mailto:adam.niggebrugge@gmail.com)
+
+
+
+## Contributors
+
+1. :hand_over_mouth: [Adam Niggebrugge](https://github.com/adam-niggebrugge)
+2. :joy: [Hudson Hancock](https://github.com/hudsonhancock)
+3. :money_mouth_face: [Jeff Cela](https://github.com/jeffcela)
+4. :innocent: [Sebastian Campos](https://github.com/scampos321)
+
+
+## React_App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
