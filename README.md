@@ -69,6 +69,8 @@ npm install @mui/icons-material
 
 npm install @mui/material @emotion/react @emotion/styled
 
+npm install socket.io-client
+
 cd ..
 
 mkdir server
