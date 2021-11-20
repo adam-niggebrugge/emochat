@@ -55,13 +55,37 @@ npm install
 From scratch, open your preferred terminal and type:
 
 ```
+mkdir <app-name>
+
+cd <app-name>
+
+mkdir client
+
+cd client
 
 npx create-react-app emochat
+
+npm install @mui/icons-material
+
+npm install @mui/material @emotion/react @emotion/styled
+
+cd ..
+
+mkdir server
+
+cd server
+
+npm init
 
 npm install express@4
 
 npm install socket.io
 
+cd ..
+
+npm init
+
+npm install concurrently
 
 ```
 
