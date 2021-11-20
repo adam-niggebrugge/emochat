@@ -81,9 +81,17 @@ npm init
 
 npm install express@4
 
+npm install apollo-server-express
+
+npm install mongoose
+
+npm install graphql
+
 npm install socket.io
 
 npm install @socket.io/mongo-adapter mongodb
+
+npm install @socket.io/mongo-emitter mongodb
 
 cd ..
 
