@@ -83,6 +83,8 @@ npm install express@4
 
 npm install socket.io
 
+npm install @socket.io/mongo-adapter mongodb
+
 cd ..
 
 npm init
