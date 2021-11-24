@@ -8,7 +8,7 @@ const InteractiveEmoji = () => {
 
     const [style, setStyle] = useState({
         eyeStyle: {
-            transform: "rotate 0 deg", 
+            transform: "rotate(0deg)", 
         },
     });
 
