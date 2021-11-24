@@ -1,31 +1,39 @@
-import React, { useState } from 'react';
-import { useMousePosition } from "./useMousePosition";
+import React, { createRef, useState, useRef } from 'react';
+import { useMousePosition } from "./MousePosition";
 import "./style.css";
 
 const InteractiveEmoji = () => {
-    const [mousePosition, setMousePosition] = useState({
-        x : 0,
-        y : 0
+    //helper of mouse position is returned here
+    const position = useMousePosition();
+
+    const [style, setStyle] = useState({
+        eyeStyle: {
+            transform: "rotate 0 deg", 
+        },
     });
 
-    function handleMouseMove(ev) { setMousePosition({
+    const refPosition = useRef();
+    const leftEye = createRef();
 
-        let x = (eye.getBoundingClientRect().left) + (eye.clientWidth / 2);
-        let y = (eye.getBoundingClientRect().top) + (eye.clientWidth / 2);
-        let radian = Math.atan2(ev.pageX - x, ev.pageY - y);
-        rot_eye = (radian * (180 / Math.PI) * -1) + 0;
-        eye.style.transform = "rotate("+ rot_eye +"deg)";
-        });
+    function handleMouseMove(ev) { 
+        let x = (refPosition.current.getBoundingClientRect().left) + (leftEye.current.offsetWidth / 2);
+        let y = (refPosition.current.getBoundingClientRect().top) + (leftEye.current.offsetWidth / 2);
+        let radian = Math.atan2(position.x - x, position.y - y);
+        let rot = (radian * (180 / Math.PI) * -1) + 0;
+        let resetStyle = "rotate"+rot+"deg";
+        setStyle({eyeStyle: {
+            transform: resetStyle, 
+        },});
     }
 
     return (
-        <div className="faceContainer"
+        <div ref={refPosition} className="faceContainer"
             onMouseMove={(ev)=> handleMouseMove(ev)}
             >
             <div className="face">
                 <div className="eyes">
-                    <div className="eye" style={}></div>
-                    <div className="eye" style={}></div>
+                    <div ref={leftEye} className="eye" style={style.eyeStyle}></div>
+                    <div className="eye" style={style.eyeStyle}></div>
                 </div>
             </div>
         </div>
