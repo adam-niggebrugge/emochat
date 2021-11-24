@@ -5,7 +5,7 @@ import InteractiveEmoji from './components/InteractiveEmoji';
 function App() {
   return (
     <div className="App">
-        <InteractiveEmoji />
+        {/* <InteractiveEmoji /> */}
     </div>
   );
 }
