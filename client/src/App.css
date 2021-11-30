@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Galindo&display=swap');
+
+:root {
+  --color-primary: #00bcd4;
+  --color-secondary: #fafafa;
+  --color-tertiary: #FFDE34;
+  --color-quaternary: #393939;
+  --color-quinary: #fafafa;
+  --color-senary: #fafafa;
+  --color-septenary: #fafafa;
+  --fun-font: 'Galindo', cursive;
+}
+
+/* REACT DEFAULT */
 .App {
   text-align: center;
 }
@@ -35,4 +49,44 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* RESET */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p, label, a, button {
+  font-family: var(--fun-font);
+}
+
+a {
+  color: var(--color-tertiary);
+}
+
+
+/* LOGIN */
+
+body{
+  height: 812px;
+}
+.card-body {
+  background-color: #2E2E2E;
+}
+
+#frame{
+  background-color: #2E2E2E;
+  /* padding-top: 112px; */
+  height: 100vh;
+}
+
+img{
+  height: 100px;
+  width: 300px;
+}
+
+input[type=text]{
+  background-color: var(--color-quaternary); 
 }
