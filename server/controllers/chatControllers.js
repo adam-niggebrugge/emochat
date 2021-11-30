@@ -11,7 +11,7 @@ const accessChat = asyncHandler(async (req, res) => {
     return res.sendStatus(400);
   }
 
-  var isChat = await Chat.find({
+  const isChat = await Chat.find({
     isGroupChat: false,
     $and: [
       { users: { $elemMatch: { $eq: req.user._id } } },
@@ -29,7 +29,7 @@ const accessChat = asyncHandler(async (req, res) => {
   if (isChat.length > 0) {
     res.send(isChat[0]);
   } else {
-    var chatData = {
+    const chatData = {
       chatName: "sender",
       isGroupChat: false,
       users: [req.user._id, userId],
@@ -76,7 +76,7 @@ const createGroupChat = asyncHandler(async (req, res) => {
     return res.status(400).send({ message: "Please Fill all the feilds" });
   }
 
-  var users = JSON.parse(req.body.users);
+  const users = JSON.parse(req.body.users);
 
   if (users.length < 2) {
     return res
