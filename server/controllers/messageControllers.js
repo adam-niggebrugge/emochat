@@ -25,14 +25,14 @@ const sendMessage = asyncHandler(async (req, res) => {
     return res.sendStatus(400);
   }
 
-  var newMessage = {
+  const newMessage = {
     sender: req.user._id,
     content: content,
     chat: chatId,
   };
 
   try {
-    var message = await Message.create(newMessage);
+    const message = await Message.create(newMessage);
 
     message = await message.populate("sender", "name pic").execPopulate();
     message = await message.populate("chat").execPopulate();
