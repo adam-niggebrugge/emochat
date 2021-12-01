@@ -34,7 +34,7 @@ const Login = () => {
                           password
                         </label>
                         <input
-                          type="text"
+                          type="password"
                           id="password"
                           className="form-control"
                         />
