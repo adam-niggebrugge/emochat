@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 
 :root {
-  --color-primary: #00bcd4;
+  --color-primary: #393939;
   --color-secondary: #fafafa;
   --color-tertiary: #FFDE34;
-  --color-quaternary: #393939;
+  --color-quaternary: #2E2E2E;
   --color-quinary: #F8A221;
   --color-senary: #fafafa;
   --color-septenary: #fafafa;
@@ -102,15 +102,25 @@ button{
 
 /* MENU */
 
-#menu_container{
+#room_container{
 /* background-color: red; */
 display: flex;
 flex-wrap: wrap;
 justify-content: space-around;
 align-items: center;
 height: 540px; 
+background-color: var(--color-primary);
 }
-/* hello */
+
+#menu_container{
+  background-color: red;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  height: var(--color-quaternary); 
+  }
+
 
 
 .circle{
