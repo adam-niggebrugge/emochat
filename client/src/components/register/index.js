@@ -17,7 +17,7 @@ const Register = () => {
                 <form className="px-md-2">
                   <div className="form-outline mb-4">
                     <label
-                      className="text-light form-label"
+                      className="text-light form-label w-100 text-left mb-2"
                       htmlFor="form3Example1q"
                     >
                       name
@@ -78,6 +78,9 @@ const Register = () => {
                     </div>
                     <div className="col-md-6">
                       <div className="mt-5 file-upload-wrapper">
+                        <label className="form-label text-light">
+                          upload your photo
+                        </label>
                         <input
                           type="file"
                           id="input-file-max-fs"
