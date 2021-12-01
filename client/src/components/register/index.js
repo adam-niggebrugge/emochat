@@ -6,7 +6,7 @@ const Register = () => {
       <div className="container py-0">
         <div
           id="frame"
-          className="row d-flex justify-content-center align-items-center h-100"
+          className="row d-flex justify-content-center align-items-center"
         >
           <div className="col-lg-8 col-xl-6">
             <div className="rounded-3">
