@@ -99,3 +99,41 @@ button{
   }
 
 }
+
+/* MENU */
+
+#menu_container{
+/* background-color: red; */
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+align-items: center;
+height: 540px;
+}
+
+
+.circle{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  background-color: var(--color-quaternary);
+  border-radius: 50%;
+  height: 140px;
+  width: 140px;
+  z-index: 1;
+}
+
+.floating { 
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+  0% { transform: translate(0,  0px); }
+  50%  { transform: translate(0, 15px); }
+  100%   { transform: translate(0, -0px); }   
+}
