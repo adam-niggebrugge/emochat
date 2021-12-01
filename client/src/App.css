@@ -13,46 +13,6 @@
   --sad-font: 'Rock Salt', cursive;
 }
 
-/* REACT DEFAULT */
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 /* RESET */
 *{
   margin: 0;
@@ -89,7 +49,7 @@ img{
   width: 200px;
 }
 
-input[type=text]{
+input[type=text], input[type=password] {
   background-color: var(--color-quaternary); 
   border: none;
   border-radius: 9px;
@@ -107,14 +67,18 @@ input[type=email], input[type=password]{
   color: var(--color-tertiary);
 }
 
-input[type=text]:focus{
+input[type=text]:focus, input[type=password]:focus {
   background-color: var(--color-quaternary); 
   color: var(--color-tertiary);
 }
 
-input[type=email]:focus{
+input[type=email]:focus, input[type=password]:focus {
   background-color: var(--color-quaternary); 
   color: var(--color-tertiary);
+}
+
+#username{
+  text-align: left !important;
 }
 
 button{
