@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../../assets/emochat_logo.svg";
 
 const Login = () => {
   return (
@@ -14,7 +15,7 @@ const Login = () => {
                 <div className="col-xl-6 mx-auto">
                   <div className=" card-body mx-md-4">
                     <div className="d-flex justify-content-center">
-                      <img src="../public/assets/emochat_logo.svg" alt="logo" />
+                      <img src={logo} alt="logo" />
                     </div>
                     <form>
                       <div className="form-outline mb-4">
