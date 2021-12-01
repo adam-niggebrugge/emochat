@@ -1,13 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-import InteractiveEmoji from './components/InteractiveEmoji';
+import logo from "./logo.svg";
+import "./App.css";
+import InteractiveEmoji from "./components/InteractiveEmoji";
+import Login from "./components/login/index";
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-        {/* <InteractiveEmoji /> */}
-    </div>
+    <>
+      <Router>
+        <div className="App">
+          {/* <InteractiveEmoji /> */}
+          <Routes>
+            <Route path="/" element={<Login />} />
+          </Routes>
+        </div>
+      </Router>
+    </>
   );
 }
 
 export default App;
+
