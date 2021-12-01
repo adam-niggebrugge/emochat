@@ -48,13 +48,13 @@ const Login = () => {
                           log in
                         </button>
                       </div>
-                      <div className="d-flex flex-column align-items-center justify-content-center pb-4">
+                      <div className="flex-column align-items-center justify-content-center pb-4">
                         <p className="mb-0 me-2">Don't have an account?</p>
                         <Link to="/register">
                           <button
                             id="main_button"
                             type="button"
-                            className="btn"
+                            className="btn w-100"
                           >
                             create new
                           </button>
