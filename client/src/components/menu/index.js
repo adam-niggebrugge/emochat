@@ -11,7 +11,7 @@ const Menu = () => {
             
           <div className="col-lg-8 col-xl-6">
             <div className="rounded-3">
-            <div className="card-body p-4 p-md-5">
+                <div className="card-body p-4 p-md-5">
                 
                
               </div>
