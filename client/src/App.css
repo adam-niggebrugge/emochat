@@ -89,7 +89,7 @@ img{
   width: 200px;
 }
 
-input[type=text]{
+input[type=text], input[type=password] {
   background-color: var(--color-quaternary); 
   border: none;
   border-radius: 9px;
@@ -107,12 +107,12 @@ input[type=email], input[type=password]{
   color: var(--color-tertiary);
 }
 
-input[type=text]:focus{
+input[type=text]:focus, input[type=password]:focus {
   background-color: var(--color-quaternary); 
   color: var(--color-tertiary);
 }
 
-input[type=email]:focus{
+input[type=email]:focus, input[type=password]:focus {
   background-color: var(--color-quaternary); 
   color: var(--color-tertiary);
 }
