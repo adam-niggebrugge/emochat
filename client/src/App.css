@@ -162,4 +162,5 @@ background-color: var(--color-primary);
   justify-content: center;
   align-items: center;
   background-color: var(--color-primary);
+  border-radius: 10%;
 }
