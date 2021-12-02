@@ -1,54 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Galindo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 
 :root {
-  --color-primary: #00bcd4;
+  --color-primary: #393939;
   --color-secondary: #fafafa;
   --color-tertiary: #FFDE34;
-  --color-quaternary: #393939;
+  --color-quaternary: #2E2E2E;
   --color-quinary: #F8A221;
   --color-senary: #fafafa;
   --color-septenary: #fafafa;
   --fun-font: 'Galindo', cursive;
-}
-
-/* REACT DEFAULT */
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  --sad-font: 'Rock Salt', cursive;
 }
 
 /* RESET */
@@ -87,7 +49,7 @@ img{
   width: 200px;
 }
 
-input[type=text]{
+input[type=text], input[type=password] {
   background-color: var(--color-quaternary); 
   border: none;
   border-radius: 9px;
@@ -96,9 +58,27 @@ input[type=text]{
   color: var(--color-tertiary);
 }
 
-input[type=text]:focus{
+input[type=email], input[type=password]{
+  background-color: var(--color-quaternary); 
+  border: none;
+  border-radius: 9px;
+  height: 60px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+  color: var(--color-tertiary);
+}
+
+input[type=text]:focus, input[type=password]:focus {
   background-color: var(--color-quaternary); 
   color: var(--color-tertiary);
+}
+
+input[type=email]:focus, input[type=password]:focus {
+  background-color: var(--color-quaternary); 
+  color: var(--color-tertiary);
+}
+
+#username{
+  text-align: left !important;
 }
 
 button{
@@ -113,8 +93,58 @@ button{
   background-color: var(--color-quinary) !important;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 375px) {
   body{
     height: 100vh;
   }
+
+}
+
+/* MENU */
+
+#room_container{
+/* background-color: red; */
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+align-items: center;
+height: 540px; 
+background-color: var(--color-primary);
+}
+
+#menu_container{
+  background-color: red;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  height: var(--color-quaternary); 
+  }
+
+
+
+.circle{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  background-color: var(--color-quaternary);
+  border-radius: 50%;
+  height: 140px;
+  width: 140px;
+  z-index: 1;
+}
+
+.floating { 
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+  0% { transform: translate(0,  0px); }
+  50%  { transform: translate(0, 15px); }
+  100%   { transform: translate(0, -0px); }   
 }
