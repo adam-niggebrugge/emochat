@@ -22,7 +22,7 @@ const Register = () => {
   const [open, setOpen] = useState(false);
 
   const [addUser, { error }] = useMutation(ADD_USER);
-
+  console.log({error});
   useEffect(() => {
     if (error) {
       setOpen(true);

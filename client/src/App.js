@@ -6,7 +6,7 @@ import Menu from "./components/menu/index";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //For graphql on login and register
-import {  ApolloClient,  InMemoryCache,  ApolloProvider,  createHttpLink,} from '@apollo/client';
+import {  ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 // Construct our main GraphQL API endpoint
