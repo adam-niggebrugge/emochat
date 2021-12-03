@@ -137,6 +137,7 @@ background-color: var(--color-primary);
   border-radius: 50%;
   height: 140px;
   width: 140px;
+  cursor: pointer;
   /* z-index: 1; */
 }
 
@@ -167,4 +168,28 @@ background-color: var(--color-primary);
   align-items: center;
   background-color: var(--color-primary);
   border-radius: 10%;
+  cursor: pointer;
+}
+
+#menu_view{
+  position: absolute;
+  height: 600px;
+  background-color: var(--color-tertiary);
+  width: 100%;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.rounded-button{
+  background-color: var(--color-quinary);
+  border-radius: 10%;
+  height: 60px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
