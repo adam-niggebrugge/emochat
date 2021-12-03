@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
+//functionality uses these mui components
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import Collapse from '@mui/material/Collapse';
 
 import logo from "../../assets/emochat_logo.svg";
 
@@ -12,15 +14,15 @@ import Auth from '../../utils/auth';
 
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [showAlert, setShowAlert] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const [login, { error }] = useMutation(LOGIN_USER);
 
   useEffect(() => {
     if (error) {
-      setShowAlert(true);
+      setOpen(true);
     } else {
-      setShowAlert(false);
+      setOpen(false);
     }
   }, [error]);
 
@@ -60,15 +62,17 @@ const Login = () => {
   return (
     <section className="gradient-form" style={{ backgroundColor: "#2E2E2E" }}>
       <div className="container py-0">
-        <Alert
-          dismissible
-          onClose={() => setShowAlert(false)}
-          show={showAlert}
-          severity="warning"
-        > 
-          <AlertTitle>Error</AlertTitle>
-          Something went wrong with your login credentials!
-        </Alert>
+        <Collapse in={open}>
+          <Alert
+            onClick={() => {
+              setOpen(false);
+            }}
+            severity="warning"
+          > 
+            <AlertTitle>Error</AlertTitle>
+            Something went wrong with your login credentials!
+          </Alert>
+        </Collapse>
         <div
           id="frame"
           className="row d-flex justify-content-center align-items-center"
