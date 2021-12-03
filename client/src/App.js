@@ -19,6 +19,7 @@ function App() {
             <Route path="/register" element={<Register />} />
               <Route path="/menu" element={<Menu />} />
               <Route path="/message" element={<Room />} />
+
           </Routes>
         </div>
       </Router>
