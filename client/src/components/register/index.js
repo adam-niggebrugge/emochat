@@ -1,9 +1,82 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
+
+//functionality uses these mui components
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Collapse from '@mui/material/Collapse';
+//graphql required imports
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../../utils/mutations';
+
+import Auth from '../../utils/auth';
 
 const Register = () => {
+  // set initial form state
+  const [userFormData, setUserFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+
+  // set state for alert
+  const [open, setOpen] = useState(false);
+
+  const [addUser, { error }] = useMutation(ADD_USER);
+
+  useEffect(() => {
+    if (error) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }, [error]);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // check if form has everything (as per react-bootstrap docs)
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    try {
+      const { data } = await addUser({
+        variables: { ...userFormData },
+      });
+      console.log(data);
+      Auth.login(data.addUser.token);
+    } catch (err) {
+      console.error(err);
+    }
+
+    setUserFormData({
+      username: '',
+      email: '',
+      password: '',
+    });
+  };
+
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#2E2E2E" }}>
       <div className="container py-0">
+      <Collapse in={open}>
+          <Alert
+            onClick={() => {
+              setOpen(false);
+            }}
+            severity="warning"
+          > 
+            <AlertTitle>Error</AlertTitle>
+            Something went wrong with your login credentials!
+          </Alert>
+        </Collapse>
         <div
           id="frame"
           className="row d-flex justify-content-center align-items-center"
@@ -14,7 +87,7 @@ const Register = () => {
                 <h3 className="text-light mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 pt-5">
                   Registration Info
                 </h3>
-                <form className="px-md-2">
+                <form className="px-md-2" onSubmit={handleFormSubmit}>
                   <div className="form-outline mb-4">
                     <label
                       className="text-light form-label w-100 text-left mb-2"
@@ -25,7 +98,9 @@ const Register = () => {
                     <input
                       type="text"
                       id="form3Example1q"
+                      name="username"
                       className="form-control"
+                      onChange={handleInputChange}
                     />
                   </div>
                   <div className="row">
@@ -39,8 +114,10 @@ const Register = () => {
                         </label>
                         <input
                           type="email"
+                          name="email"
                           className="form-control"
                           id="exampleDatepicker1"
+                          onChange={handleInputChange}
                         />
                       </div>
                     </div>
@@ -57,7 +134,9 @@ const Register = () => {
                         <input
                           type="password"
                           id="form3Example1w"
+                          name="password"
                           className="form-control"
+                          onChange={handleInputChange}
                         />
                       </div>
                     </div>
