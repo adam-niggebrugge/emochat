@@ -6,16 +6,23 @@ const { typeDefs, resolvers } = require('./schemas');
 const { protect } = require("./middleware/authorizationMid")
 const app = express();
 
+const PORT = process.env.PORT || 3001;
+
 async function startServer(typeDefs, resolvers, protect) {
 
-  const server = new ApolloServer({
+  const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
     context: protect,
   });
-  await server.start();
+  await apolloServer.start();
 
-  server.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app });
+  connectDB.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`Use GraphQL at http://localhost:${PORT}${apolloServer.graphqlPath}`);
+    });
+  });
 }
 
 startServer(typeDefs, resolvers, protect);
@@ -31,10 +38,3 @@ if (process.env.NODE_ENV === 'production') {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-
-connectDB.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-  });
-});
-
