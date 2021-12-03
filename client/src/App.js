@@ -4,6 +4,7 @@ import InteractiveEmoji from "./components/InteractiveEmoji";
 import Login from "./components/login/index";
 import Register from "./components/register/index";
 import Menu from "./components/menu/index";
+import Room from "./components/message/index";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
               <Route path="/menu" element={<Menu />} />
+              <Route path="/message" element={<Room />} />
           </Routes>
         </div>
       </Router>
