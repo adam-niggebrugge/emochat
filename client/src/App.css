@@ -118,14 +118,11 @@ background-color: var(--color-primary);
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  height: 260px; 
+  height: 272px; 
   }
 
   .icon{
-    height: 60px;
-    width: 60px;
-    color: var(--color-secondary);
-    z-index: 1;
+    color: var(--color-tertiary);
   }
 
 
