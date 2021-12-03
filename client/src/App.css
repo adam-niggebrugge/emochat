@@ -113,12 +113,12 @@ background-color: var(--color-primary);
 }
 
 #menu_container{
-  background-color: red;
+  background-color: var(--color-quaternary);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  height: var(--color-quaternary); 
+  height: 260px; 
   }
 
 
@@ -147,4 +147,20 @@ background-color: var(--color-primary);
   0% { transform: translate(0,  0px); }
   50%  { transform: translate(0, 15px); }
   100%   { transform: translate(0, -0px); }   
+}
+
+#menu_container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav_button{
+  height: 150px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary);
+  border-radius: 10%;
 }
