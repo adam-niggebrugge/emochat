@@ -1,11 +1,74 @@
-import React from "react";
-import logo from "../../assets/emochat_logo.svg";
+import React, { useState, useEffect } from "react";
+
 import { Link } from "react-router-dom";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+
+import logo from "../../assets/emochat_logo.svg";
+
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 const Login = () => {
+  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [showAlert, setShowAlert] = useState(false);
+
+  const [login, { error }] = useMutation(LOGIN_USER);
+
+  useEffect(() => {
+    if (error) {
+      setShowAlert(true);
+    } else {
+      setShowAlert(false);
+    }
+  }, [error]);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    try {
+      const { data } = await login({
+        variables: { ...userFormData },
+      });
+
+      console.log(data);
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setUserFormData({
+      email: '',
+      password: '',
+    });
+  };
+
+
   return (
     <section className="gradient-form" style={{ backgroundColor: "#2E2E2E" }}>
       <div className="container py-0">
+        <Alert
+          dismissible
+          onClose={() => setShowAlert(false)}
+          show={showAlert}
+          severity="warning"
+        > 
+          <AlertTitle>Error</AlertTitle>
+          Something went wrong with your login credentials!
+        </Alert>
         <div
           id="frame"
           className="row d-flex justify-content-center align-items-center"
@@ -18,7 +81,7 @@ const Login = () => {
                     <div className="d-flex justify-content-center">
                       <img src={logo} alt="logo" />
                     </div>
-                    <form>
+                    <form onSubmit={handleFormSubmit}>
                       <div className="form-outline mb-4">
                         <label className="form-label" htmlFor="username">
                           username
@@ -28,6 +91,7 @@ const Login = () => {
                           id="username"
                           className="form-control"
                           placeholder="username"
+                          onChange={handleInputChange}
                         />
                       </div>
                       <div className="form-outline mb-4">
@@ -38,12 +102,13 @@ const Login = () => {
                           type="password"
                           id="password"
                           className="form-control"
+                          onChange={handleInputChange}
                         />
                       </div>
                       <div className="text-center pt-1 mb-1 pb-1">
                         <button
                           className="btn btn-block fa-lg gradient-custom-2 mb-3"
-                          type="button"
+                          type="submit"
                         >
                           log in
                         </button>
