@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 //functionality uses these mui components
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import Collapse from '@mui/material/Collapse';
+import { Collapse } from '@mui/material';
 
 import logo from "../../assets/emochat_logo.svg";
 
