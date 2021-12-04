@@ -5,8 +5,8 @@ const { ApolloServer } = require('apollo-server-express');
 const connectDB = require('./config/connection');
 const { typeDefs, resolvers } = require('./schemas');
 const { protect } = require("./middleware/authorizationMid");
-import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
-import http from 'http';
+const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
+const http = require('http');
 
 const app = express();
 const httpServer = http.createServer(app);
