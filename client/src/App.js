@@ -1,23 +1,10 @@
 import "./App.css";
+//working generic chat
 import Homepage from "./Pages/Homepage";
 import { Route } from "react-router-dom";
 import Chatpage from "./Pages/Chatpage";
 
-function App() {
-  return (
-    <div className="App">
-      <Route path="/" component={Homepage} exact />
-      <Route path="/chats" component={Chatpage} />
-    </div>
-  );
-}
-
-export default App;
-
-
-// import logo from "./logo.svg";
-// import "./App.css";
-// import InteractiveEmoji from "./components/InteractiveEmoji";
+// emochat styled components
 // import Login from "./components/login/index";
 // import Register from "./components/register/index";
 // import Menu from "./components/menu/index";
@@ -25,23 +12,23 @@ export default App;
 
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-// function App() {
-//   return (
-//     <>
-//       <Router>
-//         <div className="App">
-//           {/* <InteractiveEmoji /> */}
-//           <Routes>
-//             <Route path="/" element={<Login />} />
-//             <Route path="/register" element={<Register />} />
-//               <Route path="/menu" element={<Menu />} />
-//               <Route path="/message" element={<Room />} />
-
-//           </Routes>
-//         </div>
+function App() {
+  return (
+    // <>
+    //    <Router>
+    <div className="App">
+{/*        <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/message" element={<Room />} />
+           </Routes> */}
+      <Route path="/" component={Homepage} exact />
+      <Route path="/chats" component={Chatpage} />
+    </div>
 //       </Router>
 //     </>
-//   );
-// }
+  );
+}
 
-// export default App;
+export default App;
