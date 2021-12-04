@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
-const generateToken = require("../config/createToken");
+const createToken = require("../config/createToken");
 
 //Get or Search all users
 const allUsers = asyncHandler(async (req, res) => {
@@ -22,7 +22,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password, pic } = req.body;
   if (!name || !email || !password) {
     res.status(400);
-    throw new Error("Please Enter all the Feilds");
+    throw new Error("Please Enter all the Fields");
   }
 
   const userExists = await User.findOne({ email });
