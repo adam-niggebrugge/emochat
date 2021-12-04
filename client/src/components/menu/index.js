@@ -2,21 +2,18 @@ import React from "react";
 
 const Menu = () => {
   return (
-    <section className="h-100 h-custom" style={{ backgroundColor: "#2E2E2E" }}>
-      <div className="container py-0">
-        <div
-          id="frame"
-          className="row d-flex justify-content-center align-items-center"
-        >
-            
-          <div className="col-lg-8 col-xl-6">
-            <div className="rounded-3">
-                <div className="card-body p-4 p-md-5">
-                
-               
-              </div>
-            </div>
-          </div>
+    <section className="bg-dark text-white h-100">
+      <div id="room_container">
+        <div className="circle floating">
+          <p className="w-100 mb-0">room 1</p>
+        </div>
+      </div>
+      <div id="menu_container">
+        <div className="nav_button">
+          <i className="icon fa fa-bars fa-3x" aria-hidden="true" />
+        </div>
+        <div className="nav_button">
+          <i className="fa fa-plus fa-3x" aria-hidden="true" />
         </div>
       </div>
     </section>
