@@ -2,8 +2,8 @@ const express = require('express');
 const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
 const connectDB = require("./config/connection");
-const dotenv = require("dotenv");
-//const { typeDefs, resolvers } = require('./schemas');
+// const dotenv = require("dotenv");
+
 
 const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
@@ -12,17 +12,36 @@ const { notFound, errorHandler } = require("./middleware/errorMid");
 
 const __dirname1 = path.resolve();
 
-dotenv.config();
+// dotenv.config();
 connectDB();
 
-const app = express();
-const PORT = process.env.PORT || 3001;
-const server = new ApolloServer({
-  // typeDefs,
-  // resolvers,
-});
+const { typeDefs, resolvers } = require('./schemas');
+const { protect } = require("./middleware/authorizationMid");
+const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
+const http = require('http');
 
-server.applyMiddleware({ app });
+const app = express();
+
+const PORT = process.env.PORT || 3001;
+
+async function startServer(typeDefs, resolvers, protect) {
+
+  const apolloServer = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: protect,
+  });
+  await apolloServer.start();
+
+  apolloServer.applyMiddleware({ app });
+  connectDB.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`Use GraphQL at http://localhost:${PORT}${apolloServer.graphqlPath}`);
+    });
+  });
+}
+
+startServer(typeDefs, resolvers, protect);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
