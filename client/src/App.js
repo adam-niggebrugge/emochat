@@ -1,7 +1,7 @@
 import "./App.css";
 //working generic chat
 import Homepage from "./Pages/Homepage";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Chatpage from "./Pages/Chatpage";
 
 // emochat styled components
@@ -17,14 +17,15 @@ function App() {
     // <>
     //    <Router>
     <div className="App">
-{/*        <Routes>
-              <Route path="/" element={<Login />} />
+        <Routes>
+        {/*      <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/menu" element={<Menu />} />
-              <Route path="/message" element={<Room />} />
-           </Routes> */}
+              <Route path="/message" element={<Room />} />*/}
+          
       <Route path="/" component={Homepage} exact />
       <Route path="/chats" component={Chatpage} />
+      </Routes> 
     </div>
 //       </Router>
 //     </>
