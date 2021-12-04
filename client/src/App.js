@@ -23,8 +23,8 @@ function App() {
               <Route path="/menu" element={<Menu />} />
               <Route path="/message" element={<Room />} />*/}
           
-      <Route path="/" component={Homepage} exact />
-      <Route path="/chats" component={Chatpage} />
+      <Route path="/" element={<Homepage />} exact />
+      <Route path="/chats" element={<Chatpage />} />
       </Routes> 
     </div>
 //       </Router>
