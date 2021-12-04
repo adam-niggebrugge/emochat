@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
    mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/emoChatServer', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: false,
+      useFindAndModify: true,
     });
 
 //     console.log(`MongoDB Connected: ${conn.connection.host}`);
