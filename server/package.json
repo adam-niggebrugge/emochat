@@ -17,6 +17,7 @@
   "dependencies": {
     "@socket.io/mongo-adapter": "^0.1.0",
     "@socket.io/mongo-emitter": "^0.1.0",
+    "apollo-server-core": "^3.5.0",
     "apollo-server-express": "^2.15.0",
     "bcrypt": "^4.0.1",
     "bcryptjs": "^2.4.3",

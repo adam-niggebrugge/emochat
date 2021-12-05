@@ -5,7 +5,7 @@ const { signToken } = require('../middleware/auth21HW');
 const resolvers = {
     Mutation: {
         addUser: async (parent, args) => {
-            console.log(args);
+            console.log(`*******************************************`);
             const user = await User.create(args);
             const token = signToken(user);
       
