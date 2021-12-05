@@ -33,6 +33,7 @@ const Register = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    console.log(`handle Input Change ${name} with a value of ${value}`);
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -47,6 +48,7 @@ const Register = () => {
     }
 
     try {
+      console.log(`see how the corn flakes of ${userFormData.username} &&&& ${userFormData.email}  &&&&&&&&&&& ${userFormData.password}`);
       const { data } = await addUser({
         variables: { ...userFormData },
       });

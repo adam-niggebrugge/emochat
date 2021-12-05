@@ -23,17 +23,3 @@ export const ADD_USER = gql`
     }
   }
 `;
-
-export const SAVE_CONTACT = gql`
-  mutation saveContact($userData: UserInput!) {
-    saveContact(userData: $userData) {
-        _id
-        username
-        email
-        contacts {
-            userId
-            username
-        }
-    }
-  }
-`;
