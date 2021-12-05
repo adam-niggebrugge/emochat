@@ -32,6 +32,7 @@ async function startServer(typeDefs, resolvers, protect) {
       console.log(`🚀🚀Use GraphQL at http://localhost:${PORT}${apolloServer.graphqlPath}  🚀🚀`);
     });
   });
+  return apolloServer;
 }
 
 startServer(typeDefs, resolvers, protect);

@@ -13,7 +13,7 @@ import Auth from '../../utils/auth';
 const Register = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
   });
@@ -22,7 +22,10 @@ const Register = () => {
   const [open, setOpen] = useState(false);
 
   const [addUser, { error }] = useMutation(ADD_USER);
-  console.log({error});
+  console.log(`before useEffect ++++++++++
+  
+  ${{error}}
+  +++++++++++`);
   useEffect(() => {
     if (error) {
       setOpen(true);
@@ -48,18 +51,22 @@ const Register = () => {
     }
 
     try {
-      console.log(`see how the corn flakes of ${userFormData.username} &&&& ${userFormData.email}  &&&&&&&&&&& ${userFormData.password}`);
+      console.log(`see how the corn flakes of ${userFormData.name} &&&& ${userFormData.email}  &&&&&&&&&&& ${userFormData.password}`);
       const { data } = await addUser({
         variables: { ...userFormData },
       });
       console.log(data);
       Auth.login(data.addUser.token);
     } catch (err) {
-      console.error(err);
+      console.error(`*************************
+      **
+      ${err}
+      *********
+      **********************`);
     }
 
     setUserFormData({
-      username: '',
+      name: '',
       email: '',
       password: '',
     });
@@ -100,8 +107,8 @@ const Register = () => {
                     <input
                       type="text"
                       id="form3Example1q"
-                      name="username"
-                      autoComplete="username"
+                      name="name"
+                      autoComplete="name"
                       className="form-control"
                       onChange={handleInputChange}
                     />
