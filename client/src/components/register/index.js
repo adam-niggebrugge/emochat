@@ -101,6 +101,7 @@ const Register = () => {
                       type="text"
                       id="form3Example1q"
                       name="username"
+                      autoComplete="username"
                       className="form-control"
                       onChange={handleInputChange}
                     />
@@ -117,6 +118,7 @@ const Register = () => {
                         <input
                           type="email"
                           name="email"
+                          autoComplete="email"
                           className="form-control"
                           id="exampleDatepicker1"
                           onChange={handleInputChange}
@@ -137,6 +139,7 @@ const Register = () => {
                           type="password"
                           id="form3Example1w"
                           name="password"
+                          autoComplete="new-password"
                           className="form-control"
                           onChange={handleInputChange}
                         />
@@ -146,14 +149,15 @@ const Register = () => {
                       <div className="form-outline">
                         <label
                           className="form-label text-light"
-                          htmlFor="form3Example1w"
+                          htmlFor="form3ExampleConfirm"
                         >
                           confirm password
                         </label>
                         <input
                           type="password"
-                          id="form3Example1w"
+                          id="form3ExampleConfirm"
                           className="form-control"
+                          autoComplete="new-password"
                         />
                       </div>
                     </div>

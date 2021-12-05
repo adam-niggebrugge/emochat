@@ -23,7 +23,7 @@ async function startServer(typeDefs, resolvers, protect) {
   apolloServer.applyMiddleware({ app });
   connectDB.once('open', () => {
     app.listen(PORT, () => {
-      console.log(`Use GraphQL at http://localhost:${PORT}${apolloServer.graphqlPath}`);
+      console.log(`🚀🚀Use GraphQL at http://localhost:${PORT}${apolloServer.graphqlPath}  🚀🚀`);
     });
   });
 }
