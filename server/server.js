@@ -2,8 +2,7 @@ const express = require('express');
 const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
 const connectDB = require("./config/connection");
-// const dotenv = require("dotenv");
-
+const dotenv = require("dotenv");
 
 const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
@@ -24,23 +23,17 @@ const cors = require('cors');
 const app = express();
 
 const PORT = process.env.PORT || 3001;
-<<<<<<< HEAD
 const httpServer = http.createServer(app);
-let apolloServer = null;
 
-async function startServer(typeDefs, resolvers, protect) {
-
-  apolloServer = new ApolloServer({
-=======
 const corsOptions ={
   origin: 'http:localhost:3001',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
+let apolloServer = null;
+
 async function startServer(typeDefs, resolvers, protect) {
-  const httpServer = http.createServer(app);
-  const apolloServer = new ApolloServer({
->>>>>>> working_graphql_example
+  apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
@@ -58,11 +51,7 @@ async function startServer(typeDefs, resolvers, protect) {
 
   connectDB.once('open', () => {
     app.listen(PORT, () => {
-<<<<<<< HEAD
-      console.log(`🚀 Use GraphQL at http://localhost:${PORT}${apolloServer.graphqlPath}  🚀`);
-=======
       console.log(`🚀🚀Use GraphQL at http://localhost:${PORT}${apolloServer.graphqlPath}  🚀🚀`);
->>>>>>> working_graphql_example
     });
   });
   return apolloServer;
@@ -72,13 +61,13 @@ startServer(typeDefs, resolvers, protect);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-<<<<<<< HEAD
+
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
-=======
+
 app.use(cors(corsOptions));
->>>>>>> working_graphql_example
+
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
@@ -96,21 +85,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-// db.once('open', () => {
-//   app.listen(PORT, () => {
-//     console.log(`API server running on port ${PORT}!`);
-//     // log where we can go to test our GQL API
-//     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-//   });
-// });
-
-
 app.use(notFound);
 app.use(errorHandler);
-
-// app.listen(PORT,
-//   console.log(`Server running on PORT ${PORT}...`)
-// );
 
 const io = require("socket.io")(apolloServer, {
   pingTimeout: 60000,
