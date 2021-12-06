@@ -1,6 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models/userModel');
-
+const  User = require('../models/userModel');
+const { signToken } = require('../middleware/auth21HW');
 
 const resolvers = {
     Mutation: {
@@ -17,7 +17,7 @@ const resolvers = {
               throw new AuthenticationError('Incorrect credentials');
             }
       
-            const correctPw = await user.isCorrectPassword(password);
+            const correctPw = await user.matchPassword(password);
       
             if (!correctPw) {
               throw new AuthenticationError('Incorrect credentials');
@@ -26,15 +26,6 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        saveContact: async (parent, { userData }, context) => {
-          if(context.user) {
-              const updatedUser = await User.findByIdAndUpdate(
-                { _id: context.user._id },
-                { $push: { savedContacts: userData } },
-                { new: true }
-              )
-          }
-        }
     }
 }
 

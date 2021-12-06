@@ -16,19 +16,31 @@ const __dirname1 = path.resolve();
 // connectDB();
 
 const { typeDefs, resolvers } = require('./schemas');
-const { protect } = require("./middleware/authorizationMid");
+const { protect } = require("./middleware/auth21HW");
 const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
 const http = require('http');
+const cors = require('cors');
 
 const app = express();
 
 const PORT = process.env.PORT || 3001;
+<<<<<<< HEAD
 const httpServer = http.createServer(app);
 let apolloServer = null;
 
 async function startServer(typeDefs, resolvers, protect) {
 
   apolloServer = new ApolloServer({
+=======
+const corsOptions ={
+  origin: 'http:localhost:3001',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+async function startServer(typeDefs, resolvers, protect) {
+  const httpServer = http.createServer(app);
+  const apolloServer = new ApolloServer({
+>>>>>>> working_graphql_example
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
@@ -46,18 +58,27 @@ async function startServer(typeDefs, resolvers, protect) {
 
   connectDB.once('open', () => {
     app.listen(PORT, () => {
+<<<<<<< HEAD
       console.log(`🚀 Use GraphQL at http://localhost:${PORT}${apolloServer.graphqlPath}  🚀`);
+=======
+      console.log(`🚀🚀Use GraphQL at http://localhost:${PORT}${apolloServer.graphqlPath}  🚀🚀`);
+>>>>>>> working_graphql_example
     });
   });
+  return apolloServer;
 }
 
 startServer(typeDefs, resolvers, protect);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+<<<<<<< HEAD
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
+=======
+app.use(cors(corsOptions));
+>>>>>>> working_graphql_example
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
