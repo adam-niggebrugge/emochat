@@ -40,9 +40,18 @@ const Login = () => {
       const { data } = await login({
         variables: { ...userFormData },
       });
+      toast({
+        title: "Login Successful",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
 
-      console.log(data);
       Auth.login(data.login.token);
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setLoading(false);
+      history("/chats");
     } catch (e) {
       console.error(e);
     }
