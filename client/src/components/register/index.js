@@ -1,9 +1,6 @@
-import React, { useState, useEffect }  from "react";
+import React, { useState }  from "react";
+import { useNavigate } from "react-router-dom";
 
-//functionality uses these mui components
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import Collapse from '@mui/material/Collapse';
 //graphql required imports
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
@@ -18,25 +15,11 @@ const Register = () => {
     password: '',
   });
 
-  // set state for alert
-  const [open, setOpen] = useState(false);
-
-  const [addUser, { error }] = useMutation(ADD_USER);
-  console.log(`before useEffect ++++++++++
-  
-  ${{error}}
-  +++++++++++`);
-  useEffect(() => {
-    if (error) {
-      setOpen(true);
-    } else {
-      setOpen(false);
-    }
-  }, [error]);
+  const [addUser] = useMutation(ADD_USER);
+  const history = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(`handle Input Change ${name} with a value of ${value}`);
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -51,18 +34,15 @@ const Register = () => {
     }
 
     try {
-      console.log(`see how the corn flakes of ${userFormData.name} &&&& ${userFormData.email}  &&&&&&&&&&& ${userFormData.password}`);
       const { data } = await addUser({
         variables: { ...userFormData },
       });
       console.log(data);
       Auth.login(data.addUser.token);
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      history("/chats");
     } catch (err) {
-      console.error(`*************************
-      **
-      ${err}
-      *********
-      **********************`);
+      console.error(err);
     }
 
     setUserFormData({
@@ -75,17 +55,6 @@ const Register = () => {
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#2E2E2E" }}>
       <div className="container py-0">
-      <Collapse in={open}>
-          <Alert
-            onClick={() => {
-              setOpen(false);
-            }}
-            severity="warning"
-          > 
-            <AlertTitle>Error</AlertTitle>
-            Something went wrong with your login credentials!
-          </Alert>
-        </Collapse>
         <div
           id="frame"
           className="row d-flex justify-content-center align-items-center"

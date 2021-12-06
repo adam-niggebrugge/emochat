@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import Login from "../components/Authentication/Login";
-import Signup from "../components/Authentication/Signup";
+import Login from "../components/login";
+import Register from "../components/register";
 
 function Homepage() {
   const history = useNavigate();
@@ -38,7 +38,7 @@ function Homepage() {
           emochat
         </Text>
       </Box>
-      <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
+      <Box bg="black" w="100%" p={4} borderRadius="lg" borderWidth="1px">
         <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
             <Tab>Login</Tab>
@@ -49,7 +49,7 @@ function Homepage() {
               <Login />
             </TabPanel>
             <TabPanel>
-              <Signup />
+              <Register />
             </TabPanel>
           </TabPanels>
         </Tabs>
