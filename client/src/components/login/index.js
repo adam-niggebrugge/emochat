@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 //functionality uses these mui components
-import { useToast } from "@chakra-ui/toast";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Collapse from '@mui/material/Collapse';
 
 import logo from "../../assets/emochat_logo.svg";
 
@@ -12,9 +14,17 @@ import Auth from '../../utils/auth';
 
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [login] = useMutation(LOGIN_USER);
-  const [loading, setLoading] = useState(false);
-  const toast = useToast();
+  const [open, setOpen] = useState(false);
+
+  const [login, { error }] = useMutation(LOGIN_USER);
+
+  useEffect(() => {
+    if (error) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }, [error]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -24,16 +34,10 @@ const Login = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (!userFormData) {
-      toast({
-        title: "Please Fill all the Fields",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
-      setLoading(false);
-      return;
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
     }
 
     try {
@@ -67,6 +71,17 @@ const Login = () => {
   return (
     <section className="gradient-form" style={{ backgroundColor: "#2E2E2E" }}>
       <div className="container py-0">
+        <Collapse in={open}>
+          <Alert
+            onClick={() => {
+              setOpen(false);
+            }}
+            severity="warning"
+          > 
+            <AlertTitle>Error</AlertTitle>
+            Something went wrong with your login credentials!
+          </Alert>
+        </Collapse>
         <div
           id="frame"
           className="row d-flex justify-content-center align-items-center"
@@ -107,7 +122,6 @@ const Login = () => {
                         <button
                           className="btn btn-block fa-lg gradient-custom-2 mb-3"
                           type="submit"
-                          isLoading={loading}
                         >
                           log in
                         </button>

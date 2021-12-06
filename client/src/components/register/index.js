@@ -1,7 +1,9 @@
-import React, { useState }  from "react";
-import { useNavigate } from "react-router";
-import { useToast } from "@chakra-ui/toast";
+import React, { useState, useEffect }  from "react";
 
+//functionality uses these mui components
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Collapse from '@mui/material/Collapse';
 //graphql required imports
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
@@ -15,15 +17,26 @@ const Register = () => {
     email: '',
     password: '',
   });
-  const [confirmpassword, setConfirmpassword] = useState();
+
+  // set state for alert
+  const [open, setOpen] = useState(false);
+
+  const [addUser, { error }] = useMutation(ADD_USER);
+  console.log(`before useEffect ++++++++++
   
-  //allow for form submission via graphql
-  const [addUser] = useMutation(ADD_USER);
-  const toast = useToast();
-  const history = useNavigate();
+  ${{error}}
+  +++++++++++`);
+  useEffect(() => {
+    if (error) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }, [error]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    console.log(`handle Input Change ${name} with a value of ${value}`);
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -31,43 +44,25 @@ const Register = () => {
     event.preventDefault();
 
     // check if form has everything (as per react-bootstrap docs)
-    if (!userFormData.name || !userFormData.email || !userFormData.password) {
-      toast({
-        title: "Please Fill all the Fields",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
-      return;
-    }
-    if (userFormData.password !== confirmpassword) {
-      toast({
-        title: "Passwords Do Not Match",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
-      return;
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
     }
 
     try {
-       const { data } = await addUser({
+      console.log(`see how the corn flakes of ${userFormData.name} &&&& ${userFormData.email}  &&&&&&&&&&& ${userFormData.password}`);
+      const { data } = await addUser({
         variables: { ...userFormData },
       });
-      toast({
-        title: "Registration Successful",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      console.log(data);
       Auth.login(data.addUser.token);
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      history("/chats");
     } catch (err) {
-      console.error(err);
+      console.error(`*************************
+      **
+      ${err}
+      *********
+      **********************`);
     }
 
     setUserFormData({
@@ -80,6 +75,17 @@ const Register = () => {
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#2E2E2E" }}>
       <div className="container py-0">
+      <Collapse in={open}>
+          <Alert
+            onClick={() => {
+              setOpen(false);
+            }}
+            severity="warning"
+          > 
+            <AlertTitle>Error</AlertTitle>
+            Something went wrong with your login credentials!
+          </Alert>
+        </Collapse>
         <div
           id="frame"
           className="row d-flex justify-content-center align-items-center"
@@ -158,13 +164,11 @@ const Register = () => {
                           type="password"
                           id="form3ExampleConfirm"
                           className="form-control"
-                          placeholder="Confirm password"
                           autoComplete="new-password"
-                          onChange={(e) => setConfirmpassword(e.target.value)}
                         />
                       </div>
                     </div>
-                    {/* <div className="col-md-6">
+                    <div className="col-md-6">
                       <div className="mt-5 file-upload-wrapper">
                         <label className="form-label text-light">
                           upload your photo
@@ -176,7 +180,7 @@ const Register = () => {
                           data-max-file-size="2M"
                         />
                       </div>
-                    </div> */}
+                    </div>
                   </div>
                   <button
                     type="submit"
