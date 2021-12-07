@@ -39,7 +39,7 @@ const Register = () => {
       });
       console.log(data);
       Auth.login(data.addUser.token);
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("userInfo", JSON.stringify(data.addUser));
       history("/chats");
     } catch (err) {
       console.error(err);

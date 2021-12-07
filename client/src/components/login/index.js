@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import logo from "../../assets/emochat_logo.svg";
 
@@ -106,7 +106,7 @@ const Login = () => {
                           log in
                         </button>
                       </div>
-                      {/* <div className="flex-column align-items-center justify-content-center pb-4">
+                      <div className="flex-column align-items-center justify-content-center pb-4">
                         <p className="mb-0 me-2">Don't have an account?</p>
                         <Link to="/register">
                           <button
@@ -117,7 +117,7 @@ const Login = () => {
                             create new
                           </button>
                         </Link>
-                      </div> */}
+                      </div>
                     </form>
                   </div>
                 </div>

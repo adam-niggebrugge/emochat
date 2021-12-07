@@ -6,6 +6,7 @@ const typeDefs = gql`
     name: String!
     email: String!
     pic: String
+    isAdmin: Boolean!
   }
 
   type Auth {

@@ -4,7 +4,6 @@ const { ApolloServer } = require('apollo-server-express');
 const connectDB = require("./config/connection");
 const dotenv = require("dotenv");
 
-
 const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
@@ -23,6 +22,7 @@ const cors = require('cors');
 const app = express();
 
 const PORT = process.env.PORT || 3001;
+const PORT2 = process.env.PORT || 3005;
 
 const httpServer = http.createServer(app);
 let apolloServer = null;
@@ -89,8 +89,12 @@ app.get('*', (req, res) => {
 app.use(notFound);
 app.use(errorHandler);
 
+const server = app.listen(
+  PORT2,
+  console.log(`Server running on PORT ${PORT2}...`)
+);
 
-const io = require("socket.io")(apolloServer, {
+const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
     origin: "http://localhost:3000",
