@@ -10,7 +10,7 @@ const Room = () => {
           <ul className="messages" />
           <div className="bottom_wrapper clearfix">
             <div className="message_input_wrapper">
-              <input className="message_input" placeholder="Type your message here..." />
+              <input className="message_input" placeholder="Type your emoji here..." />
             </div>
             <div className="send_message">
               <div className="icon" />

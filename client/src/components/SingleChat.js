@@ -92,14 +92,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         socket.emit("new message", data);
         setMessages([...messages, data]);
       } catch (error) {
-        toast({
-          title: "Error Occured!",
-          description: "Failed to send the Message",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom",
-        });
+        // toast({
+        //   title: "Error Occured!",
+        //   description: "Failed to send the Message",
+        //   status: "error",
+        //   duration: 5000,
+        //   isClosable: true,
+        //   position: "bottom",
+        // });
       }
     }
   };
@@ -167,7 +167,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             pb={3}
             px={2}
             w="100%"
-            fontFamily="Work sans"
+            fontFamily="Galindo"
             d="flex"
             justifyContent={{ base: "space-between" }}
             alignItems="center"
@@ -252,7 +252,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       ) : (
         // to get socket.io on same page
         <Box d="flex" alignItems="center" justifyContent="center" h="100%">
-          <Text fontSize="3xl" pb={3} fontFamily="Work sans">
+          <Text fontSize="3xl" pb={3} fontFamily="Galindo">
             Click on a user to start chatting
           </Text>
         </Box>
