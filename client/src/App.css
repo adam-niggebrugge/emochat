@@ -33,6 +33,7 @@ a {
 
 body{
   height: 812px;
+  background-color: var(--color-primary) !important;
 }
 .card-body {
   background-color: #2E2E2E;
@@ -47,6 +48,19 @@ body{
 img{
   height: 100px;
   width: 200px;
+}
+input[type=first-name], input[type=password]{
+  background-color: var(--color-quaternary); 
+  border: none;
+  border-radius: 9px;
+  height: 60px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+  color: var(--color-tertiary);
+}
+
+input[type=first-name]:focus, input[type=password]:focus {
+  background-color: var(--color-quaternary); 
+  color: var(--color-tertiary);
 }
 
 input[type=text], input[type=password] {
@@ -95,6 +109,7 @@ button{
 
 @media screen and (min-width: 375px) {
   body{
+    background-color: #2E2E2E;
     height: 100vh;
   }
 

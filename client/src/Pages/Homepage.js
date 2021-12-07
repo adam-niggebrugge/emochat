@@ -22,11 +22,14 @@ function Homepage() {
   }, [history]);
 
   return (
-    <Container maxW="xl" centerContent>
-      <Box w="100%" p={4} borderRadius="lg" borderWidth="1px">
-        <Tabs isFitted variant="soft-rounded">
+    <Container centerContent >
+      <Box w="100%" p={4} borderRadius="lg" >
+        <Tabs isFitted variant="hard-rounded">
           <TabList mb="1em">
-            <Tab>Login</Tab>
+            <Tab colorScheme="blue"
+        width="100%"
+        style={{ marginRight: 10 }}
+        >Login</Tab>
             <Tab>Sign Up</Tab>
           </TabList>
           <TabPanels>
