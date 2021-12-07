@@ -22,7 +22,7 @@ const cors = require('cors');
 const app = express();
 
 const PORT = process.env.PORT || 3001;
-const PORT2 = process.env.PORT || 3005;
+// const PORT2 = process.env.PORT || 3005;
 
 const httpServer = http.createServer(app);
 
