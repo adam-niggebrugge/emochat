@@ -81,7 +81,7 @@ const GroupChatModal = ({ children }) => {
   const handleSubmit = async () => {
     if (!groupChatName || !selectedUsers) {
       toast({
-        title: "Please fill all the feilds",
+        title: "Please fill all the fields",
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -134,7 +134,7 @@ const GroupChatModal = ({ children }) => {
         <ModalContent>
           <ModalHeader
             fontSize="35px"
-            fontFamily="Work sans"
+            fontFamily="Galindo"
             d="flex"
             justifyContent="center"
           >
