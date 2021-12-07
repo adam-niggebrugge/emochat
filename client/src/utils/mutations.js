@@ -8,6 +8,8 @@ export const LOGIN_USER = gql`
         _id
         name
         email
+        pic
+        isAdmin
       }
     }
   }
@@ -21,6 +23,8 @@ export const ADD_USER = gql`
         _id
         name
         email
+        pic
+        isAdmin
       }
     }
   }
