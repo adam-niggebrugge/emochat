@@ -83,8 +83,8 @@ app.use(notFound);
 app.use(errorHandler);
 
 const server = app.listen(
-  PORT2,
-  console.log(`Server running on PORT ${PORT2}...`)
+  PORT,
+  console.log(`Server running on PORT ${PORT}...`)
 );
 
 const io = require("socket.io")(server, {
