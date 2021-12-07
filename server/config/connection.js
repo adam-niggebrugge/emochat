@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 // const connectDB = async () => {
 //    try {
  
-   mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/emoChatServer2', {
+   mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/emoChatServer2', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: true,
