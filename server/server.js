@@ -25,16 +25,15 @@ const PORT = process.env.PORT || 3001;
 const PORT2 = process.env.PORT || 3005;
 
 const httpServer = http.createServer(app);
-let apolloServer = null;
 
 const corsOptions ={
-  origin: 'http:localhost:3001',
+  origin: 'http:localhost:3000',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
 async function startServer(typeDefs, resolvers, protect) {
   const httpServer = http.createServer(app);
-   apolloServer = new ApolloServer({
+  const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
@@ -42,13 +41,7 @@ async function startServer(typeDefs, resolvers, protect) {
   });
   await apolloServer.start();
 
-  apolloServer.applyMiddleware({ 
-    app,
-    // By default, apollo-server hosts its GraphQL endpoint at the
-    // server root. However, *other* Apollo Server packages host it at
-    // /graphql. Optionally provide this to match apollo-server.
-    path: '/' 
-  });
+  apolloServer.applyMiddleware({ app  });
 
   connectDB.once('open', () => {
     app.listen(PORT, () => {

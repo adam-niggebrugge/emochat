@@ -1,12 +1,12 @@
 import "./App.css";
 //working generic chat
-// import Homepage from "./Pages/Homepage";
+import Homepage from "./Pages/Homepage";
 import { Route, Routes } from "react-router-dom";
 import Chatpage from "./Pages/Chatpage";
 
 // emochat styled components
-import Login from "./components/login/index";
-import Register from "./components/register/index";
+// import Login from "./components/login/index";
+// import Register from "./components/register/index";
 // import Menu from "./components/menu/index";
 // import Room from "./components/message/index";
 
@@ -44,9 +44,9 @@ function App() {
       <ApolloProvider client={client}>
         <div className="App">
           <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />}/>
-            {/* <Route path="/" element={<Homepage />} exact /> */}
+            {/* <Route path="/" element={<Login />} />
+            <Route path="/register" element={<Register />}/> */}
+            <Route path="/" element={<Homepage />} exact />
             <Route path="/chats" element={<Chatpage />} />
           </Routes> 
         </div>

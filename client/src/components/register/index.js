@@ -1,6 +1,10 @@
-import React, { useState }  from "react";
+import React, { useState, useEffect }  from "react";
 import { useNavigate } from "react-router-dom";
 
+// //functionality uses these mui components
+// import Alert from '@mui/material/Alert';
+// import AlertTitle from '@mui/material/AlertTitle';
+// import Collapse from '@mui/material/Collapse';
 //graphql required imports
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
@@ -15,8 +19,19 @@ const Register = () => {
     password: '',
   });
 
-  const [addUser] = useMutation(ADD_USER);
+  // set state for alert
+  const [open, setOpen] = useState(false);
+  //allow for form submission via graphql
+  const [addUser, { error }] = useMutation(ADD_USER);
   const history = useNavigate();
+
+  useEffect(() => {
+    if (error) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }, [error]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -34,10 +49,10 @@ const Register = () => {
     }
 
     try {
-      const { data } = await addUser({
+       const { data } = await addUser({
         variables: { ...userFormData },
       });
-      console.log(data);
+     
       Auth.login(data.addUser.token);
       localStorage.setItem("userInfo", JSON.stringify(data.addUser));
       history("/chats");
@@ -55,6 +70,17 @@ const Register = () => {
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#2E2E2E" }}>
       <div className="container py-0">
+      {/* <Collapse in={open}>
+          <Alert
+            onClick={() => {
+              setOpen(false);
+            }}
+            severity="warning"
+          > 
+            <AlertTitle>Error</AlertTitle>
+            Something went wrong with your login credentials!
+          </Alert>
+        </Collapse> */}
         <div
           id="frame"
           className="row d-flex justify-content-center align-items-center"
@@ -133,6 +159,7 @@ const Register = () => {
                           type="password"
                           id="form3ExampleConfirm"
                           className="form-control"
+                          placeholder="Confirm password"
                           autoComplete="new-password"
                         />
                       </div>
