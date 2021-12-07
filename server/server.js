@@ -21,7 +21,7 @@ const cors = require('cors');
 
 const app = express();
 
-const PORT = process.env.PORT || 3001;
+//const PORT = process.env.PORT || 3001;
 const PORT2 = process.env.PORT || 3005;
 
 const httpServer = http.createServer(app);
@@ -51,7 +51,7 @@ async function startServer(typeDefs, resolvers, protect) {
   return apolloServer;
 }
 
-startServer(typeDefs, resolvers, protect);
+//startServer(typeDefs, resolvers, protect);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -90,7 +90,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:3000",
+    origin: `http://localhost:${PORT2}`,
   },
 });
 io.on("connection", (socket) => {
