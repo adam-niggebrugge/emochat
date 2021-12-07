@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema(
     password: { type: "String", required: true },
     pic: {
       type: "String",
-      required: true,
+      required: false,
       default:
         // Need to add a link to a default user profile image
         "",

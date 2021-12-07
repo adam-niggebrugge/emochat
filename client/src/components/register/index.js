@@ -1,9 +1,10 @@
 import React, { useState, useEffect }  from "react";
+import { useNavigate } from "react-router-dom";
 
-//functionality uses these mui components
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import Collapse from '@mui/material/Collapse';
+// //functionality uses these mui components
+// import Alert from '@mui/material/Alert';
+// import AlertTitle from '@mui/material/AlertTitle';
+// import Collapse from '@mui/material/Collapse';
 //graphql required imports
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
@@ -13,16 +14,17 @@ import Auth from '../../utils/auth';
 const Register = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
   });
 
   // set state for alert
   const [open, setOpen] = useState(false);
-
+  //allow for form submission via graphql
   const [addUser, { error }] = useMutation(ADD_USER);
-  console.log({error});
+  const history = useNavigate();
+
   useEffect(() => {
     if (error) {
       setOpen(true);
@@ -47,17 +49,19 @@ const Register = () => {
     }
 
     try {
-      const { data } = await addUser({
+       const { data } = await addUser({
         variables: { ...userFormData },
       });
-      console.log(data);
+     
       Auth.login(data.addUser.token);
+      localStorage.setItem("userInfo", JSON.stringify(data.addUser));
+      history("/chats");
     } catch (err) {
       console.error(err);
     }
 
     setUserFormData({
-      username: '',
+      name: '',
       email: '',
       password: '',
     });
@@ -66,7 +70,7 @@ const Register = () => {
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#2E2E2E" }}>
       <div className="container py-0">
-      <Collapse in={open}>
+      {/* <Collapse in={open}>
           <Alert
             onClick={() => {
               setOpen(false);
@@ -76,7 +80,7 @@ const Register = () => {
             <AlertTitle>Error</AlertTitle>
             Something went wrong with your login credentials!
           </Alert>
-        </Collapse>
+        </Collapse> */}
         <div
           id="frame"
           className="row d-flex justify-content-center align-items-center"
@@ -98,7 +102,8 @@ const Register = () => {
                     <input
                       type="text"
                       id="form3Example1q"
-                      name="username"
+                      name="name"
+                      autoComplete="name"
                       className="form-control"
                       onChange={handleInputChange}
                     />
@@ -115,6 +120,7 @@ const Register = () => {
                         <input
                           type="email"
                           name="email"
+                          autoComplete="email"
                           className="form-control"
                           id="exampleDatepicker1"
                           onChange={handleInputChange}
@@ -135,6 +141,7 @@ const Register = () => {
                           type="password"
                           id="form3Example1w"
                           name="password"
+                          autoComplete="new-password"
                           className="form-control"
                           onChange={handleInputChange}
                         />
@@ -144,14 +151,16 @@ const Register = () => {
                       <div className="form-outline">
                         <label
                           className="form-label text-light"
-                          htmlFor="form3Example1w"
+                          htmlFor="form3ExampleConfirm"
                         >
                           confirm password
                         </label>
                         <input
                           type="password"
-                          id="form3Example1w"
+                          id="form3ExampleConfirm"
                           className="form-control"
+                          placeholder="Confirm password"
+                          autoComplete="new-password"
                         />
                       </div>
                     </div>

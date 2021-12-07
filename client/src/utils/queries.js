@@ -4,12 +4,10 @@ export const QUERY_ME = gql`
   {
     me {
       _id
-      username
+      name
       email
-      contacts {
-        userId
-        username
-      }
+      pic
+      isAdmin
     }
   }
 `;

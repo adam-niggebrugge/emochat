@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
-//functionality uses these mui components
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import Collapse from '@mui/material/Collapse';
 
 import logo from "../../assets/emochat_logo.svg";
 
@@ -12,19 +8,15 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
+import { useToast } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [open, setOpen] = useState(false);
+  const toast = useToast();
+  const history = useNavigate();
 
-  const [login, { error }] = useMutation(LOGIN_USER);
-
-  useEffect(() => {
-    if (error) {
-      setOpen(true);
-    } else {
-      setOpen(false);
-    }
-  }, [error]);
+  const [login ] = useMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -44,9 +36,17 @@ const Login = () => {
       const { data } = await login({
         variables: { ...userFormData },
       });
+      toast({
+        title: "Login Successful",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
 
-      console.log(data);
       Auth.login(data.login.token);
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      history("/chats");
     } catch (e) {
       console.error(e);
     }
@@ -62,17 +62,6 @@ const Login = () => {
   return (
     <section className="gradient-form" style={{ backgroundColor: "#2E2E2E" }}>
       <div className="container py-0">
-        <Collapse in={open}>
-          <Alert
-            onClick={() => {
-              setOpen(false);
-            }}
-            severity="warning"
-          > 
-            <AlertTitle>Error</AlertTitle>
-            Something went wrong with your login credentials!
-          </Alert>
-        </Collapse>
         <div
           id="frame"
           className="row d-flex justify-content-center align-items-center"

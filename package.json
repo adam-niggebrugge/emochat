@@ -4,7 +4,8 @@
   "description": "A fun way to communicate without text",
   "main": "index.js",
   "engines": {
-    "node": "14.x"
+    "node": "14.x",
+    "npm": "7.x"
   },
   "scripts": {
     "start": "node server/server.js",
@@ -28,17 +29,7 @@
   },
   "homepage": "https://github.com/adam-niggebrugge/emochat#readme",
   "dependencies": {
-    "bootstrap-icons": "^1.7.1",
-    "concurrently": "^6.4.0",
-    "react-router-dom": "^6.0.2",
-    "bcryptjs": "^2.4.3",
-    "colors": "^1.4.0",
-    "dotenv": "^9.0.2",
-    "express": "^4.17.1",
-    "express-async-handler": "^1.1.4",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.9",
-    "nodemon": "^2.0.7",
-    "socket.io": "^4.1.2"
+    "@heroku/buildpack-registry": "^1.0.1",
+    "concurrently": "^6.4.0"
   }
 }
