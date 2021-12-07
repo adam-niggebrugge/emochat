@@ -2,6 +2,8 @@ import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
+import { Img } from '@chakra-ui/react'
+import source from "../../assets/emochat_logo.svg";
 import {
   Menu,
   MenuButton,
@@ -128,7 +130,7 @@ function SideDrawer() {
         d="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg="white"
+        bg="#2E2E2E"
         w="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
@@ -141,9 +143,9 @@ function SideDrawer() {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Work sans">
-          emochat
-        </Text>
+        <Box>
+        <Img src={source} alt="logo"/>
+        </Box>
         <div>
           <Menu>
             <MenuButton p={1}>

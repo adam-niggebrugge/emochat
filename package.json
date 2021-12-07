@@ -30,6 +30,7 @@
   "homepage": "https://github.com/adam-niggebrugge/emochat#readme",
   "dependencies": {
     "@heroku/buildpack-registry": "^1.0.1",
-    "concurrently": "^6.4.0"
+    "concurrently": "^6.4.0",
+    "react-router-dom": "^6.0.2"
   }
 }

@@ -146,7 +146,7 @@
   .bottom_wrapper {
     position: relative;
     width: 100%;
-    background-color: #fff;
+    background-color: #2E2E2E;
     padding: 20px 20px;
     position: absolute;
     bottom: 0;
@@ -174,7 +174,7 @@
     height: 50px;
     display: inline-block;
     border-radius: 50px;
-    background-color: #FFDE34;
+    background-color: #2E2E2E;
     border: 2px solid #FFDE34;
     color: #fff;
     cursor: pointer;
@@ -184,7 +184,7 @@
   }
   .bottom_wrapper .send_message:hover {
     color: #FFDE34;
-    background-color: #fff;
+    background-color: #2E2E2E;
   }
   .bottom_wrapper .send_message .text {
     font-size: 18px;
