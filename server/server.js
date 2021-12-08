@@ -21,10 +21,11 @@ const cors = require('cors');
 
 const app = express();
 
-//const PORT = process.env.PORT || 3001;
+
+const PORT = process.env.PORT || 3001;
 const PORT2 = process.env.PORT || 3005;
 
-const httpServer = http.createServer(app);
+// const httpServer = http.createServer(app);
 
 const corsOptions ={
   origin: 'http:localhost:3000',
@@ -44,8 +45,8 @@ async function startServer(typeDefs, resolvers, protect) {
   apolloServer.applyMiddleware({ app  });
 
   connectDB.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`🚀🚀Use GraphQL at http://localhost:${PORT}${apolloServer.graphqlPath}  🚀🚀`);
+    app.listen(PORT2, () => {
+      console.log(`🚀🚀Use GraphQL at http://localhost:${PORT2}${apolloServer.graphqlPath}  🚀🚀`);
     });
   });
   return apolloServer;
@@ -65,19 +66,13 @@ app.use(cors(corsOptions));
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname1, "/public/build")));
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname1, "../public/build/index.html"))
-  );
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is running..");
-  });
+  app.use(express.static(path.join(__dirname1, '/public/build')));
 }
 
-//app.get('*', (req, res) => {
-//  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-//});
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname1, '../client/build/index.html'));
+});
+
 
 app.use(notFound);
 app.use(errorHandler);
